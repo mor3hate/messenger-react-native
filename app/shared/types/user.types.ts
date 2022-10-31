@@ -1,7 +1,4 @@
-export interface IUser {
-	id: string
+export interface IUserAuth {
 	email: string
 	password: string
 }
-
-export interface IUserAuth extends Pick<IUser, 'email' | 'password'> {}

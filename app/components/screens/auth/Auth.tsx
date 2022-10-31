@@ -1,26 +1,41 @@
 import Button from '@/components/ui/button/Button'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { IUserAuth } from '@/shared/types/user.types'
 import AuthFields from './AuthFields'
 import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
+import { useActions } from '@/hooks/useActions'
+import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+import { useAppSelector } from '@/hooks/reduxHooks'
 
 const Auth: FC = () => {
 	const [isReg, setReg] = useState(false)
+
+	const { navigate } = useTypedNavigation()
+
+	const { user } = useAppSelector(state => state.user)
+
+	const { register, login } = useActions()
 
 	const { control, handleSubmit, reset } = useForm<IUserAuth>({
 		mode: 'onChange'
 	})
 
-	const onSubmit: SubmitHandler<IUserAuth> = ({ email, password }) => {
+	const onSubmit: SubmitHandler<IUserAuth> = data => {
 		if (isReg) {
-			console.log('reg:', email, password)
+			register(data)
 		} else {
-			console.log('login:', email, password)
+			login(data)
 		}
 		reset()
 	}
+
+	useEffect(() => {
+		if (user) {
+			navigate('Home')
+		}
+	}, [user])
 
 	return (
 		<DismissKeyboard>
@@ -49,9 +64,12 @@ const Auth: FC = () => {
 						}}
 					/>
 
-					<Pressable className='self-end mt-2' onPress={() => setReg(!isReg)}>
+					<Pressable
+						className='self-center mt-6'
+						onPress={() => setReg(!isReg)}
+					>
 						<Text className='text-gray-400 font-semibold text-xl'>
-							{!isReg ? 'Register' : 'Login'}
+							{!isReg ? 'New to us? Register' : 'Already in system? Login'}
 						</Text>
 					</Pressable>
 				</View>

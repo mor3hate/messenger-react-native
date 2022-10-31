@@ -7,5 +7,6 @@
 		"paths": {
 			"@/*": ["./app/*"]
 		}
-	}
+	},
+	"typeRoots": ["./types"]
 }
