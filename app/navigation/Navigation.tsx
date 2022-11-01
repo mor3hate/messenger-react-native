@@ -12,6 +12,7 @@ const Navigation: FC = () => {
 			<Stack.Navigator
 				screenOptions={{
 					headerShown: false,
+					animation: 'fade',
 					contentStyle: {
 						backgroundColor: '#0e0e10'
 					}

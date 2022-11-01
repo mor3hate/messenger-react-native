@@ -1,6 +1,13 @@
+import { IProfileMain } from './../components/screens/profile/profile-header/profile-header.interface'
+import { IUserData } from './../store/user/user.interface'
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import {
+	collection,
+	getFirestore,
+	CollectionReference,
+	DocumentData
+} from 'firebase/firestore'
 
 import {
 	REACT_FIREBASE_API_KEY,
@@ -27,3 +34,10 @@ export const app = initializeApp({
 
 export const auth = getAuth(app)
 export const db = getFirestore(app)
+
+const createCollection = <T = DocumentData>(collectionName: string) => {
+	return collection(db, collectionName) as CollectionReference<T>
+}
+
+export const usersCol = createCollection<IUserData>('users')
+export const usersProfileCol = createCollection<IProfileMain>('profile')

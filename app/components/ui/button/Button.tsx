@@ -7,9 +7,11 @@ const Button: FC<IButton> = ({ className, title, ...rest }) => {
 	return (
 		<Pressable
 			{...rest}
-			className={clsx('bg-pink rounded-xl py-3 px-6 w-32', className)}
+			className={clsx('bg-pink rounded-xl py-4 px-5 w-32', className)}
 		>
-			<Text className='text-white font-medium text-xl'>{title}</Text>
+			<Text className='text-white font-medium text-xl text-center'>
+				{title}
+			</Text>
 		</Pressable>
 	)
 }

@@ -8,13 +8,14 @@ import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
 import { useActions } from '@/hooks/useActions'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { useAppSelector } from '@/hooks/reduxHooks'
+import Loader from '@/components/ui/loader/Loader'
 
 const Auth: FC = () => {
 	const [isReg, setReg] = useState(false)
 
 	const { navigate } = useTypedNavigation()
 
-	const { user } = useAppSelector(state => state.user)
+	const { user, isLoading } = useAppSelector(state => state.user)
 
 	const { register, login } = useActions()
 
@@ -34,8 +35,12 @@ const Auth: FC = () => {
 	useEffect(() => {
 		if (user) {
 			navigate('Home')
+		} else {
+			navigate('Auth')
 		}
 	}, [user])
+
+	if (isLoading) return <Loader />
 
 	return (
 		<DismissKeyboard>

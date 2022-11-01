@@ -1,3 +1,4 @@
+import { usersCol, usersProfileCol } from './../../firebase/index'
 import { IUserAuth } from './../../shared/types/user.types'
 import { IUserData } from './user.interface'
 import { createAsyncThunk } from '@reduxjs/toolkit'
@@ -20,12 +21,28 @@ export const register = createAsyncThunk<IUserData, IUserAuth>(
 				email,
 				password
 			).then(({ user }) => {
-				setDoc(doc(db, 'users', user.uid), {
-					uid: user.uid,
-					name: user.displayName,
-					photoUrl: user.photoURL,
+				setDoc(doc(usersCol, user.uid), {
 					email: user.email,
-					lastSeen: serverTimestamp()
+					uid: user.uid
+				})
+				setDoc(doc(usersProfileCol, user.uid), {
+					displayName: '',
+					email: user.email,
+					photoUrl: '',
+					stats: [
+						{
+							name: 'posts',
+							count: 0
+						},
+						{
+							name: 'friends',
+							count: 0
+						},
+						{
+							name: 'stories',
+							count: 0
+						}
+					]
 				})
 				return user
 			})

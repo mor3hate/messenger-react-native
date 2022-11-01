@@ -46,6 +46,9 @@ const Field = <T extends Record<string, any>>({
 								onChangeText={onChange}
 								onBlur={onBlur}
 								className='text-white text-base'
+								style={{
+									paddingBottom: 5
+								}}
 								{...rest}
 							/>
 						</View>

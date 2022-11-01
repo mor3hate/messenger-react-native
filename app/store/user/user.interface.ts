@@ -1,7 +1,6 @@
 import { User } from 'firebase/auth'
 
-export interface IUserData
-	extends Pick<User, 'refreshToken' | 'email' | 'uid'> {}
+export interface IUserData extends Pick<User, 'email' | 'uid'> {}
 
 export interface IInitialState {
 	isLoading: boolean

@@ -6,7 +6,7 @@ import { Pressable, Text, View } from 'react-native'
 const Home: FC = () => {
 	const { navigate } = useTypedNavigation()
 	return (
-		<Layout title='Start messaging!'>
+		<Layout title='Chats'>
 			<View>
 				<Pressable onPress={() => navigate('Auth')} className='p-12'>
 					<Text className='text-white'>Home</Text>

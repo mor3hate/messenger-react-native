@@ -27,7 +27,7 @@ const Avatar: FC<IAvatar> = ({ photoUrl, variant }) => {
 			}}
 		>
 			<Image
-				source={photoUrl ? photoUrl : require('../../../../assets/user.png')}
+				source={!photoUrl ? require('../../../../assets/user.png') : photoUrl}
 				style={{
 					resizeMode: 'center'
 				}}
