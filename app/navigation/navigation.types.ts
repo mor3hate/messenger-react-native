@@ -7,6 +7,8 @@ export type TypeRootStackParamList = {
 	Profile: undefined
 	Friends: undefined
 	Settings: undefined
+	Posts: undefined
+	Stories: undefined
 }
 
 export type IRoute = {

@@ -6,6 +6,7 @@ import NavigationBar from './navigation-bar/NavigationBar'
 
 import LayoutHeader from '../ui/layout-header/LayoutHeader'
 import HamburgerMenu from '../ui/hamburger-menu/HamburgerMenu'
+import { hamburgerMenu } from '../ui/hamburger-menu/hamburger-menu.interface'
 
 const Layout: FC<PropsWithChildren<{ title?: string }>> = ({
 	children,
@@ -16,7 +17,7 @@ const Layout: FC<PropsWithChildren<{ title?: string }>> = ({
 	return (
 		<SafeAreaView className='flex-1 relative'>
 			<LayoutHeader title={title} onPress={() => setIsShow(!show)} />
-			{show && <HamburgerMenu />}
+			{show && <HamburgerMenu menu={hamburgerMenu} />}
 			<View>{children}</View>
 			<NavigationBar />
 		</SafeAreaView>
