@@ -8,7 +8,7 @@ const SettingsPage: FC = () => {
 	const { logOut } = useActions()
 
 	return (
-		<Layout title='Settings'>
+		<Layout title='Settings' nested={false}>
 			<View className='items-center mt-20'>
 				<Button
 					title='Logout'

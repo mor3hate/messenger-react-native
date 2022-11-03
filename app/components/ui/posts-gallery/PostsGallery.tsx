@@ -6,7 +6,7 @@ const PostsGallery: FC = () => {
 	return (
 		<View className='flex-row flex-wrap justify-between'>
 			{[...Array(10).keys()].map(item => (
-				<PostsGalleryItem count={item} />
+				<PostsGalleryItem count={item} key={item} />
 			))}
 		</View>
 	)

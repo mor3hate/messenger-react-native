@@ -20,7 +20,7 @@ const Profile: FC = () => {
 	if (isLoading) return <Loader />
 
 	return (
-		<Layout>
+		<Layout nested={false}>
 			<View>
 				<ScrollView>
 					<ProfileMain info={data!} />

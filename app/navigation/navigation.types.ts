@@ -9,6 +9,7 @@ export type TypeRootStackParamList = {
 	Settings: undefined
 	Posts: undefined
 	Stories: undefined
+	CreatePost: undefined
 }
 
 export type IRoute = {

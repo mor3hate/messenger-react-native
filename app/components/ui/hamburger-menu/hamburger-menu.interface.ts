@@ -17,6 +17,10 @@ export const hamburgerMenu: IHamburgerMenu = {
 		{
 			name: 'Auth',
 			text: 'Change profile info'
+		},
+		{
+			name: 'CreatePost',
+			text: 'Create new post'
 		}
 	]
 }
