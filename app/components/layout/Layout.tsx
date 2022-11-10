@@ -5,8 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import NavigationBar from './navigation-bar/NavigationBar'
 
 import LayoutHeader from '../ui/layout-header/LayoutHeader'
-import HamburgerMenu from '../ui/hamburger-menu/HamburgerMenu'
-import { hamburgerMenu } from '../ui/hamburger-menu/hamburger-menu.interface'
+import HamburgerMenu from '../ui/form/hamburger-menu/HamburgerMenu'
+import { hamburgerMenu } from '../ui/form/hamburger-menu/hamburger-menu.interface'
 
 const Layout: FC<PropsWithChildren<{ title?: string; nested: boolean }>> = ({
 	children,

@@ -1,11 +1,29 @@
-import { FC } from 'react'
-import { Text, View } from 'react-native'
+import { FC, useEffect } from 'react'
+import { Image, Text, View } from 'react-native'
+import { Link } from '@react-navigation/native'
+import { IPostGalleryItem } from '@/components/ui/posts-gallery/post-gallery.interface'
 
-const PostsGalleryItem: FC<{ count: number }> = ({ count }) => {
+const PostsGalleryItem: FC<IPostGalleryItem> = ({
+	postImage,
+	postText,
+	lastPublished,
+	isLink
+}) => {
 	return (
-		<View className='bg-navbar rounded-xl w-[150px] min-h-[100px] max-h-[200px] mb-5'>
-			<Text>{count}</Text>
-		</View>
+		<>
+			{isLink ? (
+				<Image
+					source={{ uri: postImage }}
+					fadeDuration={300}
+					className='w-[150px] min-h-[200px] max-h-[400px] rounded-xl'
+					style={{
+						resizeMode: 'cover'
+					}}
+				></Image>
+			) : (
+				<View></View>
+			)}
+		</>
 	)
 }
 

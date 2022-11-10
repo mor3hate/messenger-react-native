@@ -1,4 +1,4 @@
-import { usersCol, usersProfileCol } from './../../firebase/index'
+import { usersCol, usersProfileCol } from '@/firebase/createCollection'
 import { IUserAuth } from './../../shared/types/user.types'
 import { IUserData } from './user.interface'
 import { createAsyncThunk } from '@reduxjs/toolkit'
@@ -10,7 +10,7 @@ import {
 
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 
-import { auth, db } from '../../firebase/index'
+import { auth } from '../../firebase/index'
 
 export const register = createAsyncThunk<IUserData, IUserAuth>(
 	'firebase/register',

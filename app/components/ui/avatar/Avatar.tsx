@@ -27,9 +27,15 @@ const Avatar: FC<IAvatar> = ({ photoUrl, variant }) => {
 			}}
 		>
 			<Image
-				source={!photoUrl ? require('../../../../assets/user.png') : photoUrl}
+				source={
+					!photoUrl
+						? require('../../../../assets/user.png')
+						: {
+								uri: photoUrl
+						  }
+				}
 				style={{
-					resizeMode: 'center'
+					resizeMode: 'cover'
 				}}
 				className={clsx('rounded-full w-28 h-28', {
 					['w-20 h-20']: variant === 'small' || variant === 'stories'

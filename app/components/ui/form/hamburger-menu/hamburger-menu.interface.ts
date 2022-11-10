@@ -11,11 +11,11 @@ export interface IHamburgerMenu {
 export const hamburgerMenu: IHamburgerMenu = {
 	items: [
 		{
-			name: 'Home',
+			name: 'SetAvatar',
 			text: 'Set avatar'
 		},
 		{
-			name: 'Auth',
+			name: 'ChangeInfo',
 			text: 'Change profile info'
 		},
 		{

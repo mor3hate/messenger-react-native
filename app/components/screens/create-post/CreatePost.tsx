@@ -8,13 +8,16 @@ import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
 import Button from '@/components/ui/button/Button'
 import { useCreatePost } from './useCreatePost'
 import ImagePicker from './image-pick/ImagePicker'
+import { useAppSelector } from '@/hooks/reduxHooks'
 
 const CreatePost: FC = () => {
 	const { control, handleSubmit, reset } = useForm<IPost>({
 		mode: 'onChange'
 	})
 
-	const { image, pickImage, removeImage } = useCreatePost()
+	const { user } = useAppSelector(state => state.user)
+
+	const { image, pickImage, removeImage, onSubmit } = useCreatePost(user!.uid)
 
 	return (
 		<DismissKeyboard>
@@ -23,7 +26,6 @@ const CreatePost: FC = () => {
 					<View className='w-[90%]'>
 						<Field<IPost>
 							control={control}
-							placeholderTextColor={'gray'}
 							multiline={true}
 							name='postText'
 							className='h-48'
@@ -44,6 +46,7 @@ const CreatePost: FC = () => {
 						/>
 
 						<Button
+							onPress={handleSubmit(onSubmit)}
 							title='Publish'
 							className='mx-auto mt-10'
 							style={{

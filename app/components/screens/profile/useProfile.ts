@@ -10,6 +10,5 @@ export const useProfile = (id: string) => {
 			enabled: !!id
 		}
 	)
-
 	return { ...queryData }
 }

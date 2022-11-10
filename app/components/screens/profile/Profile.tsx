@@ -16,7 +16,7 @@ const Profile: FC = () => {
 	const { index } = useAppSelector(state => state.profileNav)
 
 	const { data, isLoading } = useProfile(user?.uid!)
-
+	
 	if (isLoading) return <Loader />
 
 	return (

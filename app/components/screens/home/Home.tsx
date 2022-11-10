@@ -5,10 +5,11 @@ import { Pressable, Text, View } from 'react-native'
 
 const Home: FC = () => {
 	const { navigate } = useTypedNavigation()
+
 	return (
 		<Layout title='Chats' nested={false}>
 			<View>
-				<Pressable onPress={() => navigate('Auth')} className='p-12'>
+				<Pressable onPress={() => {}}>
 					<Text className='text-white'>Home</Text>
 				</Pressable>
 			</View>

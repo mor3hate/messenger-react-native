@@ -23,7 +23,7 @@ const Field = <T extends Record<string, any>>({
 					<>
 						<View
 							className={clsx(
-								'bg-gray-500 w-full py-4 px-4 my-2 rounded-xl border border-transparent',
+								'bg-gray-500 w-full py-3 px-4 my-2 rounded-xl border border-transparent',
 								{
 									['border-red']: error
 								}
@@ -45,10 +45,8 @@ const Field = <T extends Record<string, any>>({
 								value={value}
 								onChangeText={onChange}
 								onBlur={onBlur}
-								className='text-white text-base'
-								style={{
-									paddingBottom: 5
-								}}
+								className='text-white text-base h-10'
+								placeholderTextColor={'gray'}
 								{...rest}
 							/>
 						</View>
