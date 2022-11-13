@@ -8,7 +8,7 @@ import { IChangeInfo } from './change-info.interface'
 import ChangeInfoFields from './ChangeInfoFields'
 import { useAppSelector } from '@/hooks/reduxHooks'
 import { useChangeInfo } from './useChangeInfo'
-import Loader from '@/components/ui/loader/Loader'
+import Loader from '../../ui/loaders/Loader'
 
 const ChangeInfo: FC = () => {
 	const { control, handleSubmit } = useForm<IChangeInfo>({
@@ -19,7 +19,7 @@ const ChangeInfo: FC = () => {
 
 	const { onSubmit, isLoading } = useChangeInfo(user!.uid)
 
-	if (isLoading) return <Loader />
+	if (isLoading) return <Loader size='large' />
 
 	return (
 		<DismissKeyboard>

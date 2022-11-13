@@ -21,10 +21,6 @@ export const menu: IMenu = {
 			name: 'AddFriends'
 		},
 		{
-			icon: 'smileo',
-			name: 'Profile'
-		},
-		{
 			icon: 'team',
 			name: 'Friends'
 		},

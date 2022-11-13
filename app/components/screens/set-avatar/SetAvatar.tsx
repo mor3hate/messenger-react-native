@@ -5,7 +5,7 @@ import Button from '@/components/ui/button/Button'
 import ImagePicker from '@/components/screens/create-post/image-pick/ImagePicker'
 import { useAppSelector } from '@/hooks/reduxHooks'
 import { useAvatar } from './useAvatar'
-import Loader from '@/components/ui/loader/Loader'
+import Loader from '../../ui/loaders/Loader'
 
 const SetAvatar: FC = () => {
 	const { user } = useAppSelector(state => state.user)
@@ -14,7 +14,7 @@ const SetAvatar: FC = () => {
 		user!.uid
 	)
 
-	if (isLoading) return <Loader />
+	if (isLoading) return <Loader size='large' />
 
 	return (
 		<Layout title='Set your avatar' nested>

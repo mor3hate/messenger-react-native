@@ -8,7 +8,7 @@ import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
 import { useActions } from '@/hooks/useActions'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { useAppSelector } from '@/hooks/reduxHooks'
-import Loader from '@/components/ui/loader/Loader'
+import Loader from '../../ui/loaders/Loader'
 
 const Auth: FC = () => {
 	const [isReg, setReg] = useState(false)
@@ -40,7 +40,7 @@ const Auth: FC = () => {
 		}
 	}, [user])
 
-	if (isLoading) return <Loader />
+	if (isLoading) return <Loader size='large' />
 
 	return (
 		<DismissKeyboard>

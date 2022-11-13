@@ -6,6 +6,7 @@ import SettingsPage from '@/components/screens/settings/Settings'
 import { IRoute } from './navigation.types'
 import SetAvatar from '@/components/screens/set-avatar/SetAvatar'
 import ChangeInfo from '@/components/screens/change-info/ChangeInfo'
+import ProfilePosts from '@/components/screens/profile/profile-posts/ProfilePosts'
 
 export const userRoutes: IRoute[] = [
 	{
@@ -35,5 +36,9 @@ export const userRoutes: IRoute[] = [
 	{
 		name: 'ChangeInfo',
 		component: ChangeInfo
+	},
+	{
+		name: 'Posts',
+		component: ProfilePosts
 	}
 ]

@@ -5,9 +5,14 @@ import { useMutation } from '@tanstack/react-query'
 import { ProfileService } from '@/services/profile.service'
 import { SubmitHandler } from 'react-hook-form'
 import { IPost } from './create-post.interface'
+import Toast from 'react-native-root-toast'
+import { errorToast, successToast } from '@/shared/toast/constants'
+import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 export const useCreatePost = (id: string) => {
 	const [image, setImage] = useState('')
+
+	const { goBack } = useTypedNavigation()
 
 	const pickImage = async () => {
 		if (Platform.OS !== 'web') {
@@ -32,7 +37,7 @@ export const useCreatePost = (id: string) => {
 		setImage('')
 	}
 
-	const { mutateAsync } = useMutation(['create a post'], (data: IPost) =>
+	const { mutateAsync, isLoading } = useMutation(['create a post'], (data: IPost) =>
 		ProfileService.CreatePost(
 			data.postText,
 			{
@@ -41,12 +46,20 @@ export const useCreatePost = (id: string) => {
 				path: 'posts'
 			},
 			id
-		)
+		), {
+		onSuccess() {
+			goBack()
+			Toast.show('Post created successfully!', successToast)
+		},
+		onError(error) {
+			Toast.show(String(error), errorToast)
+		}
+		}
 	)
 
 	const onSubmit: SubmitHandler<IPost> = async data => {
 		await mutateAsync(data)
 	}
 
-	return { image, pickImage, removeImage, onSubmit }
+	return { image, pickImage, removeImage, onSubmit, isLoading }
 }

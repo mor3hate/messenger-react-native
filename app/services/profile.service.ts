@@ -12,11 +12,14 @@ import {
 	serverTimestamp,
 	collection,
 	CollectionReference,
-	updateDoc
+	updateDoc,
+	arrayUnion,
+	increment
 } from 'firebase/firestore'
 import { usersProfileCol } from '@/firebase/createCollection'
 import { updateEmail } from 'firebase/auth'
 import { auth } from '@/firebase'
+import firebase from 'firebase/compat'
 
 export const ProfileService = {
 	async GetProfile(id: string) {
@@ -51,9 +54,15 @@ export const ProfileService = {
 		)
 	},
 
-
 	async GetPosts(id: string) {
-		return getDocs(collection(usersProfileCol, id, 'posts') as CollectionReference<IPost>)
-	},
+		return getDocs(
+			collection(usersProfileCol, id, 'posts') as CollectionReference<IPost>
+		)
+	}
 
+	// async AddCount(id: string, index: number) {
+	// 	return updateDoc(doc(usersProfileCol, id), {
+	// 		stats:
+	// 	})
+	// }
 }

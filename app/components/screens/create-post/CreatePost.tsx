@@ -9,6 +9,7 @@ import Button from '@/components/ui/button/Button'
 import { useCreatePost } from './useCreatePost'
 import ImagePicker from './image-pick/ImagePicker'
 import { useAppSelector } from '@/hooks/reduxHooks'
+import Loader from '../../ui/loaders/Loader'
 
 const CreatePost: FC = () => {
 	const { control, handleSubmit, reset } = useForm<IPost>({
@@ -17,7 +18,11 @@ const CreatePost: FC = () => {
 
 	const { user } = useAppSelector(state => state.user)
 
-	const { image, pickImage, removeImage, onSubmit } = useCreatePost(user!.uid)
+	const { image, pickImage, removeImage, onSubmit, isLoading } = useCreatePost(
+		user!.uid
+	)
+
+	if (isLoading) return <Loader size='large' />
 
 	return (
 		<DismissKeyboard>
