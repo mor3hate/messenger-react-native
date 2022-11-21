@@ -1,23 +1,28 @@
-import { FC, useEffect } from 'react'
-import { Image, Text, View } from 'react-native'
-import { Link } from '@react-navigation/native'
+import { FC} from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
 // @ts-ignore
 import CachedImage from 'expo-cached-image'
 import { IPostGalleryItem } from '@/components/ui/posts-gallery/post-gallery.interface'
 import SkeletonLoading from '@/components/ui/loaders/SkeletonLoader'
+import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+import { setTimeHelper } from '@/helpers/setTimeHelper'
 
 const PostsGalleryItem: FC<IPostGalleryItem> = ({
 	postImage,
 	postText,
 	lastPublished,
 	isLink,
-	id
+	id,
+	userId
 }) => {
+	const { navigate } = useTypedNavigation()
 	return (
 		<>
 			{isLink ? (
-				<Link
-					to={'/Posts'}
+				<TouchableOpacity
+					onPress={() => navigate('Posts', {
+						userId: userId || ''
+					})}
 					style={{
 						marginBottom: 10
 					}}
@@ -33,9 +38,9 @@ const PostsGalleryItem: FC<IPostGalleryItem> = ({
 						className='w-[150px] min-h-[200px] max-h-[400px] rounded-xl'
 						resizeMode='cover'
 					/>
-				</Link>
+				</TouchableOpacity>
 			) : (
-				<View className='w-[90%] mb-5'>
+				<View className='w-[90%] mb-12'>
 					<CachedImage
 						source={{
 							uri: postImage
@@ -47,7 +52,10 @@ const PostsGalleryItem: FC<IPostGalleryItem> = ({
 						className='w-full min-h-[200px] max-h-[400px] rounded-xl'
 						resizeMode='cover'
 					/>
-					<Text className='text-white text-lg mt-3'>{postText}</Text>
+					<Text className={'text-white text-base opacity-70 mt-1'}>{setTimeHelper(lastPublished)}</Text>
+					<View className='bg-gray-600 p-4 rounded-2xl mt-3'>
+						<Text className='text-white text-lg'>{postText}</Text>
+					</View>
 				</View>
 			)}
 		</>
@@ -56,11 +64,4 @@ const PostsGalleryItem: FC<IPostGalleryItem> = ({
 
 export default PostsGalleryItem
 
-// <Image
-// 	source={{ uri: postImage }}
-// 	fadeDuration={300}
-// 	className='w-[150px] min-h-[200px] max-h-[400px] rounded-xl'
-// 	style={{
-// 		resizeMode: 'cover'
-// 	}}
-// ></Image>
+

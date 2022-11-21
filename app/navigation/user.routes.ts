@@ -6,7 +6,8 @@ import SettingsPage from '@/components/screens/settings/Settings'
 import { IRoute } from './navigation.types'
 import SetAvatar from '@/components/screens/set-avatar/SetAvatar'
 import ChangeInfo from '@/components/screens/change-info/ChangeInfo'
-import ProfilePosts from '@/components/screens/profile/profile-posts/ProfilePosts'
+import PostPage from '@/components/screens/postPage/PostPage'
+import AddFriends from '@/components/screens/add-friends/AddFriends'
 
 export const userRoutes: IRoute[] = [
 	{
@@ -39,6 +40,10 @@ export const userRoutes: IRoute[] = [
 	},
 	{
 		name: 'Posts',
-		component: ProfilePosts
+		component: PostPage
+	},
+	{
+		name: 'AddFriends',
+		component: AddFriends
 	}
 ]

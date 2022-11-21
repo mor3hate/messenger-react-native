@@ -1,5 +1,8 @@
+export type timeObject = {
+	seconds: number
+}
 export interface IPost {
-	lastPublished: string
+	lastPublished: timeObject
 	postText: string
 	postImage?: string
 }

@@ -7,7 +7,7 @@ export type TypeRootStackParamList = {
 	Profile: { userId: string }
 	Friends: undefined
 	Settings: undefined
-	Posts: undefined
+	Posts: {userId: string}
 	Stories: undefined
 	CreatePost: undefined
 	SetAvatar: undefined

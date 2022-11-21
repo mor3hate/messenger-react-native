@@ -1,8 +1,7 @@
 import { IPostGalleryItem } from '@/components/ui/posts-gallery/post-gallery.interface'
 
 export interface IProfilePosts {
-	page?: boolean
-	id: string
+	userId: string
 	posts: IPostGalleryItem[]
 	isLoading: boolean
 }

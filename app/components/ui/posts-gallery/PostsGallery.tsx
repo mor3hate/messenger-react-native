@@ -4,7 +4,7 @@ import PostsGalleryItem from './PostsGalleryItem'
 import { IPostGallery } from '@/components/ui/posts-gallery/post-gallery.interface'
 import clsx from 'clsx'
 
-const PostsGallery: FC<IPostGallery> = ({ gallery, variant }) => {
+const PostsGallery: FC<IPostGallery> = ({ gallery, variant, userId }) => {
 	return (
 		<View
 			className={clsx('flex-row flex-wrap justify-between', {
@@ -13,6 +13,7 @@ const PostsGallery: FC<IPostGallery> = ({ gallery, variant }) => {
 		>
 			{gallery.map(post => (
 				<PostsGalleryItem
+					userId={userId}
 					key={post.id}
 					isLink={variant === 'grid'}
 					postText={post.postText}

@@ -5,10 +5,10 @@ import { AntDesign } from '@expo/vector-icons'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { useAppSelector } from '@/hooks/reduxHooks'
-import { useTypedRoute } from '@/hooks/useTypedRoute'
+
 
 const ProfileMenuNavItem: FC = () => {
-	const { navigate, isFocused } = useTypedNavigation()
+	const { navigate } = useTypedNavigation()
 	const { user } = useAppSelector(state => state.user)
 
 	return (

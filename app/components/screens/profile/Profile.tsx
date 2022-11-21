@@ -53,8 +53,7 @@ const Profile: FC = () => {
 					<ProfileNav />
 					{index === 1 ? (
 						<ProfilePosts
-							page={false}
-							id={params!.userId}
+							userId={params!.userId}
 							posts={postsData || []}
 							isLoading={isLoadingPosts}
 						/>
