@@ -14,8 +14,9 @@ const AddFriends: FC = () => {
 			<Layout nested title='Add friends'>
 				<View className={'mt-12'}>
 					<SearchField searchTerm={searchTerm} onChange={handleSearch} />
-					{isSuccess && <FriendsList friends={data || []} />}
-					{!data?.length && (
+					{isSuccess ? (
+						<FriendsList friends={data || []} />
+					) : (
 						<Text className={'text-white text-center mt-3'}>
 							No users found!
 						</Text>

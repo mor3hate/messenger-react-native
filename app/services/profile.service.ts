@@ -5,21 +5,19 @@ import {
 } from '@/components/screens/create-post/create-post.interface'
 import { ImageUploadService } from './image.upload.service'
 import {
-	doc,
-	getDocs,
-	getDoc,
 	addDoc,
-	serverTimestamp,
 	collection,
 	CollectionReference,
-	updateDoc,
-	arrayUnion,
-	increment
+	doc,
+	getDoc,
+	getDocs,
+	serverTimestamp,
+	updateDoc
 } from 'firebase/firestore'
-import { usersProfileCol } from '@/firebase/createCollection'
+import { usersCol, usersProfileCol } from '@/firebase/createCollection'
 import { updateEmail } from 'firebase/auth'
 import { auth } from '@/firebase'
-import firebase from 'firebase/compat'
+import { IFriend } from '@/shared/types/friends.types'
 
 export const ProfileService = {
 	async GetProfile(id: string) {
@@ -34,11 +32,17 @@ export const ProfileService = {
 	},
 
 	async ChangeProfileInfo(data: IChangeInfo, id: string) {
-		await updateEmail(auth.currentUser!, data.email!)
-		return updateDoc(doc(usersProfileCol, id), {
-			displayName: data.displayName,
-			email: data.email
-		})
+		if (data.email) {
+			await updateEmail(auth.currentUser!, data.email!)
+			return updateDoc(doc(usersProfileCol, id), {
+				displayName: data.displayName,
+				email: data.email || auth.currentUser?.email
+			})
+		} else {
+			return updateDoc(doc(usersProfileCol, id), {
+				displayName: data.displayName
+			})
+		}
 	},
 
 	async CreatePost(postText: string, data: IImgData, id: string) {
@@ -58,11 +62,39 @@ export const ProfileService = {
 		return getDocs(
 			collection(usersProfileCol, id, 'posts') as CollectionReference<IPost>
 		)
-	}
+	},
 
-	// async AddCount(id: string, index: number) {
-	// 	return updateDoc(doc(usersProfileCol, id), {
-	// 		stats:
-	// 	})
-	// }
+	async addToFriends(recipientId: string, currentUserId: string) {
+		await addDoc(
+			collection(
+				usersCol,
+				currentUserId,
+				'friends'
+			) as CollectionReference<IFriend>,
+			{
+				status: 'pending',
+				id: recipientId
+			}
+		)
+		await addDoc(
+			collection(
+				usersCol,
+				recipientId,
+				'friends'
+			) as CollectionReference<IFriend>,
+			{
+				status: 'pending',
+				id: currentUserId
+			}
+		)
+	},
+	async GetUserFriendsStatus(currentUserId: string) {
+		return getDocs(
+			collection(
+				usersCol,
+				currentUserId,
+				'friends'
+			) as CollectionReference<IFriend>
+		)
+	}
 }

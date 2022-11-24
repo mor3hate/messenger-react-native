@@ -1,7 +1,7 @@
 import Button from '@/components/ui/button/Button'
 import { FC, useEffect, useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { IUserAuth } from '@/shared/types/user.types'
 import AuthFields from './AuthFields'
 import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
@@ -15,7 +15,9 @@ const Auth: FC = () => {
 
 	const { navigate } = useTypedNavigation()
 
-	const { user, isLoading } = useAppSelector(state => state.user)
+	const {
+		user: { user, isLoading }
+	} = useAppSelector(state => state.persistedReducer)
 
 	const { register, login } = useActions()
 

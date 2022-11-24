@@ -16,7 +16,9 @@ const CreatePost: FC = () => {
 		mode: 'onChange'
 	})
 
-	const { user } = useAppSelector(state => state.user)
+	const {
+		user: { user }
+	} = useAppSelector(state => state.persistedReducer)
 
 	const { image, pickImage, removeImage, onSubmit, isLoading } = useCreatePost(
 		user!.uid

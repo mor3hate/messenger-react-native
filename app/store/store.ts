@@ -1,21 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userSlice from './user/userSlice'
 import profileNavSlice from './profile-nav/profileNavSlice'
 import { persistReducer, persistStore } from 'redux-persist'
 import thunk from 'redux-thunk'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { rootReducer } from '@/store/rootReducer'
 
 const persistConfig = {
 	key: 'root',
 	storage: AsyncStorage
 }
 
-const persistedReducer = persistReducer(persistConfig, userSlice)
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
 	reducer: {
-		user: persistedReducer,
-		profileNav: profileNavSlice
+		profileNav: profileNavSlice,
+		persistedReducer
 	},
 	middleware: [thunk]
 })

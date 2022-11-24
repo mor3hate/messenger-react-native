@@ -1,11 +1,12 @@
 import { FC } from 'react'
+import {View} from 'react-native'
 import { IFriendList } from '@/components/ui/friends/friend-list.interface'
 import FriendsListItem from '@/components/ui/friends/FriendsListItem'
-import Animated, { FadeInUp } from 'react-native-reanimated'
+
 
 const FriendsList: FC<IFriendList> = ({ friends }) => {
 	return (
-		<Animated.View className={'mb-6 px-3'} entering={FadeInUp.duration(500)}>
+		<View className={'mb-6 px-3'}>
 			{friends.map(friend => (
 				<FriendsListItem
 					id={friend.id}
@@ -13,7 +14,7 @@ const FriendsList: FC<IFriendList> = ({ friends }) => {
 					displayName={friend.displayName}
 				/>
 			))}
-		</Animated.View>
+		</View>
 	)
 }
 

@@ -8,6 +8,7 @@ import SetAvatar from '@/components/screens/set-avatar/SetAvatar'
 import ChangeInfo from '@/components/screens/change-info/ChangeInfo'
 import PostPage from '@/components/screens/postPage/PostPage'
 import AddFriends from '@/components/screens/add-friends/AddFriends'
+import FriendsPage from '@/components/screens/friends-page/FriendsPage'
 
 export const userRoutes: IRoute[] = [
 	{
@@ -45,5 +46,9 @@ export const userRoutes: IRoute[] = [
 	{
 		name: 'AddFriends',
 		component: AddFriends
+	},
+	{
+		name: 'Friends',
+		component: FriendsPage
 	}
 ]

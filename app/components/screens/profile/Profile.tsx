@@ -1,24 +1,24 @@
 import Layout from '@/components/layout/Layout'
 import Loader from '../../ui/loaders/Loader'
 import ProfileNav from '@/components/ui/profile-nav/ProfileNav'
-import { useAppSelector } from '@/hooks/reduxHooks'
 import { FC, useCallback, useState } from 'react'
-import { View, ScrollView, RefreshControl } from 'react-native'
+import { RefreshControl, ScrollView, View } from 'react-native'
 import ProfileButtons from './profile-buttons/ProfileButtons'
 import ProfileMain from './profile-header/ProfileMain'
 import { useProfile } from './useProfile'
 import ProfilePosts from './profile-posts/ProfilePosts'
 import ProfileStories from './profile-stories/ProfileStories'
 import { useTypedRoute } from '@/hooks/useTypedRoute'
+import { useAppSelector } from '@/hooks/reduxHooks'
 
 const Profile: FC = () => {
 	const { params } = useTypedRoute()
 	const [refreshing, setRefreshing] = useState(false)
 
 	const {
-		profileNav: { index },
 		user: { user }
-	} = useAppSelector(state => state)
+	} = useAppSelector(state => state.persistedReducer)
+	const { index } = useAppSelector(state => state.profileNav)
 
 	const {
 		profileInfoData,
@@ -49,7 +49,12 @@ const Profile: FC = () => {
 					}
 				>
 					<ProfileMain info={profileInfoData!} />
-					{profileInfoData?.email !== user?.email && <ProfileButtons />}
+					{profileInfoData?.email !== user?.email && (
+						<ProfileButtons
+							recipientId={params!.userId}
+							currentUserId={user!.uid}
+						/>
+					)}
 					<ProfileNav />
 					{index === 1 ? (
 						<ProfilePosts

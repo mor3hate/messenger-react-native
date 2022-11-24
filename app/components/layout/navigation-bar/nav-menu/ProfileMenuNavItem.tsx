@@ -6,10 +6,11 @@ import { AntDesign } from '@expo/vector-icons'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { useAppSelector } from '@/hooks/reduxHooks'
 
-
 const ProfileMenuNavItem: FC = () => {
 	const { navigate } = useTypedNavigation()
-	const { user } = useAppSelector(state => state.user)
+	const {
+		user: { user }
+	} = useAppSelector(state => state.persistedReducer)
 
 	return (
 		<Pressable

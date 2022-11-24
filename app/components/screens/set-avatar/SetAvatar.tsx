@@ -8,7 +8,9 @@ import { useAvatar } from './useAvatar'
 import Loader from '../../ui/loaders/Loader'
 
 const SetAvatar: FC = () => {
-	const { user } = useAppSelector(state => state.user)
+	const {
+		user: { user }
+	} = useAppSelector(state => state.persistedReducer)
 
 	const { image, pickImage, removeImage, mutateAsync, isLoading } = useAvatar(
 		user!.uid

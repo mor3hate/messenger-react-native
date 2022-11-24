@@ -15,7 +15,9 @@ const ChangeInfo: FC = () => {
 		mode: 'onChange'
 	})
 
-	const { user } = useAppSelector(state => state.user)
+	const {
+		user: { user }
+	} = useAppSelector(state => state.persistedReducer)
 
 	const { onSubmit, isLoading } = useChangeInfo(user!.uid)
 

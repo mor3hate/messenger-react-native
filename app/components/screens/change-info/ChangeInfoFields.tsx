@@ -19,7 +19,6 @@ const ChangeInfoFields: FC<{ control: Control<IChangeInfo> }> = ({
 				control={control}
 				name='email'
 				rules={{
-					required: 'Email is required',
 					pattern: {
 						value: validEmail,
 						message: 'Email is not valid'
