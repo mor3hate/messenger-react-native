@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import Layout from '@/components/layout/Layout'
 import Button from '@/components/ui/button/Button'
 import ImagePicker from '@/components/screens/create-post/image-pick/ImagePicker'
@@ -30,7 +30,6 @@ const SetAvatar: FC = () => {
 
 					<Button
 						onPress={() => mutateAsync()}
-						title='Publish'
 						className='mx-auto mt-10'
 						style={{
 							shadowColor: '#e3229e',
@@ -43,7 +42,11 @@ const SetAvatar: FC = () => {
 
 							elevation: 19
 						}}
-					/>
+					>
+						<Text className={'text-white font-medium text-xl text-center'}>
+							Publish
+						</Text>
+					</Button>
 				</View>
 			</View>
 		</Layout>

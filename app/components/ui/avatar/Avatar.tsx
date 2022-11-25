@@ -1,12 +1,13 @@
 import { FC } from 'react'
-import { View, Image } from 'react-native'
+import { Image, View } from 'react-native'
 import { IAvatar } from './avatar-interface'
-
+import Animated, { FadeIn } from 'react-native-reanimated'
 import clsx from 'clsx'
 
 const Avatar: FC<IAvatar> = ({ photoUrl, variant }) => {
 	return (
-		<View
+		<Animated.View
+			entering={FadeIn.duration(500)}
 			className={clsx(
 				'bg-navbar w-36 h-36 rounded-full items-center justify-center relative',
 				{
@@ -51,7 +52,7 @@ const Avatar: FC<IAvatar> = ({ photoUrl, variant }) => {
 					)}
 				></View>
 			)}
-		</View>
+		</Animated.View>
 	)
 }
 

@@ -2,7 +2,7 @@ import Layout from '@/components/layout/Layout'
 import Button from '@/components/ui/button/Button'
 import { useActions } from '@/hooks/useActions'
 import { FC } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 const SettingsPage: FC = () => {
 	const { logOut } = useActions()
@@ -11,7 +11,6 @@ const SettingsPage: FC = () => {
 		<Layout title='Settings' nested={false}>
 			<View className='items-center mt-20'>
 				<Button
-					title='Logout'
 					onPress={() => logOut()}
 					style={{
 						shadowColor: '#e3229e',
@@ -24,7 +23,11 @@ const SettingsPage: FC = () => {
 
 						elevation: 19
 					}}
-				/>
+				>
+					<Text className={'text-white font-medium text-xl text-center'}>
+						Logout
+					</Text>
+				</Button>
 			</View>
 		</Layout>
 	)

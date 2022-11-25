@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { Text, View } from 'react-native'
 import Layout from '@/components/layout/Layout'
 import SearchField from '@/components/ui/search/SearchField'
@@ -27,4 +27,4 @@ const AddFriends: FC = () => {
 	)
 }
 
-export default AddFriends
+export default memo(AddFriends)

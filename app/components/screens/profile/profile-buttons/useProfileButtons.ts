@@ -19,7 +19,7 @@ export const useProfileButtons = (
 		}
 	)
 
-	const { mutateAsync, isSuccess, isLoading } = useMutation(
+	const { mutateAsync, isLoading } = useMutation(
 		['add a friend'],
 		() => ProfileService.addToFriends(recipientId, currentUserId),
 		{
@@ -38,5 +38,5 @@ export const useProfileButtons = (
 		}
 	)
 
-	return { mutateAsync, isSuccess, data }
+	return { mutateAsync, isLoading, data }
 }

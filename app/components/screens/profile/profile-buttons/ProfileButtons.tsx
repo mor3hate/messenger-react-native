@@ -1,27 +1,27 @@
 import Button from '@/components/ui/button/Button'
 import { FC } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { IProfileButtons } from '@/components/screens/profile/profile-buttons/profile-buttons.interface'
 import { useProfileButtons } from '@/components/screens/profile/profile-buttons/useProfileButtons'
 import clsx from 'clsx'
+import Loader from '@/components/ui/loaders/Loader'
 
 const ProfileButtons: FC<IProfileButtons> = ({
 	recipientId,
 	currentUserId
 }) => {
-	const { mutateAsync, isSuccess, data } = useProfileButtons(
+	const { mutateAsync, isLoading, data } = useProfileButtons(
 		recipientId,
 		currentUserId
 	)
 
 	const statusPending = data?.data().status === 'pending'
-	const statusSuccess = data?.data().status === 'success'
+	const statusSuccess = data?.data().status === 'accepted'
 
 	return (
 		<View className='flex-row mt-6 justify-evenly items-center'>
 			{!statusSuccess && (
 				<Button
-					title={statusPending ? 'Sent' : 'Follow'}
 					disabled={statusPending}
 					onPress={() => mutateAsync()}
 					className={clsx({
@@ -38,10 +38,19 @@ const ProfileButtons: FC<IProfileButtons> = ({
 
 						elevation: 19
 					}}
-				/>
+				>
+					<Text className={'text-white font-medium text-xl text-center'}>
+						{isLoading ? (
+							<Loader size='small' />
+						) : statusPending ? (
+							'Sent'
+						) : (
+							'Follow'
+						)}
+					</Text>
+				</Button>
 			)}
 			<Button
-				title='Message'
 				className='bg-gray-600'
 				style={{
 					shadowColor: '#2a2b31',
@@ -54,7 +63,11 @@ const ProfileButtons: FC<IProfileButtons> = ({
 
 					elevation: 19
 				}}
-			/>
+			>
+				<Text className={'text-white font-medium text-xl text-center'}>
+					Message
+				</Text>
+			</Button>
 		</View>
 	)
 }

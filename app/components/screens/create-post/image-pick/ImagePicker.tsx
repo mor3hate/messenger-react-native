@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { View, Image } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import Button from '@/components/ui/button/Button'
 import { IImagePicker } from './image-picker.interface'
 import { AntDesign } from '@expo/vector-icons'
@@ -9,7 +9,6 @@ const ImagePicker: FC<IImagePicker> = ({ onPress, image, onDelete }) => {
 	return (
 		<View className='flex-row items-center mt-5 h-28'>
 			<Button
-				title='Choose image'
 				className='bg-gray-600 w-1/2'
 				style={{
 					shadowColor: '#2a2b31',
@@ -23,7 +22,11 @@ const ImagePicker: FC<IImagePicker> = ({ onPress, image, onDelete }) => {
 					elevation: 19
 				}}
 				onPress={onPress}
-			/>
+			>
+				<Text className={'text-white font-medium text-xl text-center'}>
+					Choose image
+				</Text>
+			</Button>
 			{image && (
 				<Animated.View className='relative' entering={FadeIn} exiting={FadeOut}>
 					<Image

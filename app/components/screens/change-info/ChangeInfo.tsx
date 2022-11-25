@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
 import Button from '@/components/ui/button/Button'
 import Layout from '@/components/layout/Layout'
@@ -31,7 +31,6 @@ const ChangeInfo: FC = () => {
 						<ChangeInfoFields control={control} />
 						<Button
 							onPress={handleSubmit(onSubmit)}
-							title='Publish'
 							className='mx-auto mt-10'
 							style={{
 								shadowColor: '#e3229e',
@@ -44,7 +43,11 @@ const ChangeInfo: FC = () => {
 
 								elevation: 19
 							}}
-						/>
+						>
+							<Text className={'text-white font-medium text-xl text-center'}>
+								Publish
+							</Text>
+						</Button>
 					</View>
 				</View>
 			</Layout>

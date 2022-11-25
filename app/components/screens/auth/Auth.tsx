@@ -55,7 +55,6 @@ const Auth: FC = () => {
 					<AuthFields control={control} />
 
 					<Button
-						title="Let's go!"
 						onPress={handleSubmit(onSubmit)}
 						className='mx-auto mt-6'
 						style={{
@@ -69,7 +68,11 @@ const Auth: FC = () => {
 
 							elevation: 19
 						}}
-					/>
+					>
+						<Text className={'text-white font-medium text-xl text-center'}>
+							Let's go!
+						</Text>
+					</Button>
 
 					<Pressable
 						className='self-center mt-6'

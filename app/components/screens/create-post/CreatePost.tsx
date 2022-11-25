@@ -1,7 +1,7 @@
 import Layout from '@/components/layout/Layout'
 import Field from '@/components/ui/form/field/Field'
 import { FC } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { IPost } from './create-post.interface'
 import DismissKeyboard from '@/components/ui/form/field/DismissKeyboard'
@@ -54,7 +54,6 @@ const CreatePost: FC = () => {
 
 						<Button
 							onPress={handleSubmit(onSubmit)}
-							title='Publish'
 							className='mx-auto mt-10'
 							style={{
 								shadowColor: '#e3229e',
@@ -67,7 +66,11 @@ const CreatePost: FC = () => {
 
 								elevation: 19
 							}}
-						/>
+						>
+							<Text className={'text-white font-medium text-xl text-center'}>
+								Publish
+							</Text>
+						</Button>
 					</View>
 				</View>
 			</Layout>
