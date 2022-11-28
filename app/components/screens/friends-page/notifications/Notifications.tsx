@@ -1,13 +1,9 @@
 import { FC } from 'react'
-import { useAppSelector } from '@/hooks/reduxHooks'
 import NotificationItem from './NotificationItem'
 import { Text, View } from 'react-native'
+import { INotifications } from '@/store/notifications/notifications.interface'
 
-const Notifications: FC = () => {
-	const {
-		notifications: { notifications }
-	} = useAppSelector(state => state.persistedReducer)
-
+const Notifications: FC<INotifications> = ({ notifications }) => {
 	return (
 		<View className={'p-6'}>
 			{notifications.length !== 0 ? (

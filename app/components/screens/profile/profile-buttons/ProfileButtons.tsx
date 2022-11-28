@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 import { IProfileButtons } from '@/components/screens/profile/profile-buttons/profile-buttons.interface'
 import { useProfileButtons } from '@/components/screens/profile/profile-buttons/useProfileButtons'
 import clsx from 'clsx'
-import Loader from '@/components/ui/loaders/Loader'
+import ButtonLoader from '@/components/ui/loaders/ButtonLoader'
 
 const ProfileButtons: FC<IProfileButtons> = ({
 	recipientId,
@@ -40,13 +40,7 @@ const ProfileButtons: FC<IProfileButtons> = ({
 					}}
 				>
 					<Text className={'text-white font-medium text-xl text-center'}>
-						{isLoading ? (
-							<Loader size='small' />
-						) : statusPending ? (
-							'Sent'
-						) : (
-							'Follow'
-						)}
+						{isLoading ? <ButtonLoader /> : statusPending ? 'Sent' : 'Follow'}
 					</Text>
 				</Button>
 			)}

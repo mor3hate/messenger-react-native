@@ -8,7 +8,7 @@ import {
 	signOut
 } from 'firebase/auth'
 
-import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 
 import { auth } from '../../firebase/index'
 
@@ -26,6 +26,7 @@ export const register = createAsyncThunk<IUserData, IUserAuth>(
 					uid: user.uid
 				})
 				setDoc(doc(usersProfileCol, user.uid), {
+					id: user.uid,
 					displayName: '',
 					email: user.email,
 					photoUrl: '',

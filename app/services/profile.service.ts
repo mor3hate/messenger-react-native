@@ -73,7 +73,8 @@ export const ProfileService = {
 			) as CollectionReference<IFriend>,
 			{
 				status: 'pending',
-				id: recipientId
+				id: recipientId,
+				receiver: false
 			}
 		)
 		await addDoc(
@@ -84,7 +85,8 @@ export const ProfileService = {
 			) as CollectionReference<IFriend>,
 			{
 				status: 'pending',
-				id: currentUserId
+				id: currentUserId,
+				receiver: true
 			}
 		)
 	},

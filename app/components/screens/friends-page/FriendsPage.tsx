@@ -5,11 +5,16 @@ import { AntDesign } from '@expo/vector-icons'
 import { useAppSelector } from '@/hooks/reduxHooks'
 import Notifications from './notifications/Notifications'
 import ModalUI from '@/components/ui/modal/ModalUI'
+import { useFriendsPage } from '@/components/screens/friends-page/useFriendsPage'
+import FriendsList from '@/components/ui/friends/FriendsList'
 
 const FriendsPage: FC = () => {
 	const {
+		user: { user },
 		notifications: { notifications }
 	} = useAppSelector(state => state.persistedReducer)
+
+	const { data } = useFriendsPage(user!.uid)
 
 	const [isModalShow, setIsModalShow] = useState(false)
 
@@ -21,19 +26,20 @@ const FriendsPage: FC = () => {
 			>
 				<Text className={'text-white text-2xl font-medium'}>Notifications</Text>
 				<AntDesign name='right' size={24} color='white' />
-				{notifications.length !== 0 && (
+				{notifications?.length !== 0 && (
 					<View
 						className={
 							'w-4 h-4 rounded-full bg-pink items-center absolute left-[61%] top-0'
 						}
 					>
-						<Text className={'text-white'}>{notifications.length}</Text>
+						<Text className={'text-white'}>{notifications?.length}</Text>
 					</View>
 				)}
 			</TouchableOpacity>
 			<ModalUI isModalShow={isModalShow} setIsModalShow={setIsModalShow}>
-				<Notifications />
+				<Notifications notifications={notifications || []} />
 			</ModalUI>
+			<FriendsList friends={data || []} />
 		</Layout>
 	)
 }
