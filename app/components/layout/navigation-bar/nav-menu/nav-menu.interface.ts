@@ -1,6 +1,6 @@
 import { AntDesign } from '@expo/vector-icons'
-import { AntIconName } from './../../../../shared/types/icon.types'
-import { IRoute } from './../../../../navigation/navigation.types'
+import { AntIconName } from '@/shared/types/icon.types'
+import { IRoute } from '@/navigation/navigation.types'
 
 export interface IMenuItem extends Pick<IRoute, 'name'> {
 	icon: typeof AntDesign[AntIconName]
@@ -19,6 +19,10 @@ export const menu: IMenu = {
 		{
 			icon: 'adduser',
 			name: 'AddFriends'
+		},
+		{
+			icon: 'smileo',
+			name: 'Profile'
 		},
 		{
 			icon: 'team',

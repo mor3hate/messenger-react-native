@@ -1,11 +1,11 @@
 import { FC } from 'react'
-import { View } from 'react-native'
+import { ScrollView } from 'react-native'
 import { IFriendList } from '@/components/ui/friends/friend-list.interface'
 import FriendsListItem from '@/components/ui/friends/FriendsListItem'
 
 const FriendsList: FC<IFriendList> = ({ friends }) => {
 	return (
-		<View className={'mb-6 px-3'}>
+		<ScrollView className={'mb-6 px-3'}>
 			{friends.map(friend => (
 				<FriendsListItem
 					key={friend.id}
@@ -14,7 +14,7 @@ const FriendsList: FC<IFriendList> = ({ friends }) => {
 					displayName={friend.displayName}
 				/>
 			))}
-		</View>
+		</ScrollView>
 	)
 }
 

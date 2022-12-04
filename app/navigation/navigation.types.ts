@@ -7,11 +7,12 @@ export type TypeRootStackParamList = {
 	Profile: { userId: string }
 	Friends: undefined
 	Settings: undefined
-	Posts: {userId: string}
+	Posts: { userId: string }
 	Stories: undefined
 	CreatePost: undefined
 	SetAvatar: undefined
 	ChangeInfo: undefined
+	Chat: { userId: string }
 }
 
 export type IRoute = {

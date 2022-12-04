@@ -10,9 +10,10 @@ import { useCreatePost } from './useCreatePost'
 import ImagePicker from './image-pick/ImagePicker'
 import { useAppSelector } from '@/hooks/reduxHooks'
 import Loader from '../../ui/loaders/Loader'
+import { useImage } from '@/shared/image-hook/useImage'
 
 const CreatePost: FC = () => {
-	const { control, handleSubmit, reset } = useForm<IPost>({
+	const { control, handleSubmit } = useForm<IPost>({
 		mode: 'onChange'
 	})
 
@@ -20,9 +21,9 @@ const CreatePost: FC = () => {
 		user: { user }
 	} = useAppSelector(state => state.persistedReducer)
 
-	const { image, pickImage, removeImage, onSubmit, isLoading } = useCreatePost(
-		user!.uid
-	)
+	const { image, pickImage, removeImage } = useImage()
+
+	const { onSubmit, isLoading } = useCreatePost(user!.uid, image)
 
 	if (isLoading) return <Loader size='large' />
 

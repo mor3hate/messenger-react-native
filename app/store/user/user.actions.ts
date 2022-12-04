@@ -11,6 +11,8 @@ import {
 import { doc, setDoc } from 'firebase/firestore'
 
 import { auth } from '../../firebase/index'
+import Toast from 'react-native-root-toast'
+import { errorToast, successToast } from '@/shared/toast/constants'
 
 export const register = createAsyncThunk<IUserData, IUserAuth>(
 	'firebase/register',
@@ -47,8 +49,10 @@ export const register = createAsyncThunk<IUserData, IUserAuth>(
 				})
 				return user
 			})
+			Toast.show('Successfully registered', successToast)
 			return response
 		} catch (error) {
+			Toast.show(String(error), errorToast)
 			return thunkApi.rejectWithValue(error)
 		}
 	}
@@ -65,8 +69,10 @@ export const login = createAsyncThunk<IUserData, IUserAuth>(
 			).then(({ user }) => {
 				return user
 			})
+			Toast.show('Logged in', successToast)
 			return response
 		} catch (error) {
+			Toast.show(String(error), errorToast)
 			return thunkApi.rejectWithValue(error)
 		}
 	}

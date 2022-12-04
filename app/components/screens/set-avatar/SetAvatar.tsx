@@ -6,15 +6,16 @@ import ImagePicker from '@/components/screens/create-post/image-pick/ImagePicker
 import { useAppSelector } from '@/hooks/reduxHooks'
 import { useAvatar } from './useAvatar'
 import Loader from '../../ui/loaders/Loader'
+import { useImage } from '@/shared/image-hook/useImage'
 
 const SetAvatar: FC = () => {
 	const {
 		user: { user }
 	} = useAppSelector(state => state.persistedReducer)
 
-	const { image, pickImage, removeImage, mutateAsync, isLoading } = useAvatar(
-		user!.uid
-	)
+	const { pickImage, removeImage, image } = useImage()
+
+	const { mutateAsync, isLoading } = useAvatar(user!.uid, image)
 
 	if (isLoading) return <Loader size='large' />
 

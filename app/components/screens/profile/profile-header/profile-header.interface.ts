@@ -4,4 +4,6 @@ export interface IProfileMain extends IProfileStats {
 	photoUrl: string
 	displayName: string
 	email: string | null
+	id: string
+	chats?: string[]
 }

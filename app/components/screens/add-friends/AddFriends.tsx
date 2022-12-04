@@ -1,5 +1,5 @@
 import { FC, memo } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import Layout from '@/components/layout/Layout'
 import SearchField from '@/components/ui/search/SearchField'
 import { useSearch } from '@/hooks/useSearch'
@@ -13,14 +13,12 @@ const AddFriends: FC = () => {
 		<DismissKeyboard>
 			<Layout nested title='Add friends'>
 				<View className={'mt-12'}>
-					<SearchField searchTerm={searchTerm} onChange={handleSearch} />
-					{isSuccess ? (
-						<FriendsList friends={data || []} />
-					) : (
-						<Text className={'text-white text-center mt-3'}>
-							No users found!
-						</Text>
-					)}
+					<SearchField
+						searchTerm={searchTerm}
+						onChange={handleSearch}
+						placeholder={'Search for people'}
+					/>
+					{isSuccess && <FriendsList friends={data || []} />}
 				</View>
 			</Layout>
 		</DismissKeyboard>

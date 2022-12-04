@@ -5,6 +5,7 @@ import { IProfileButtons } from '@/components/screens/profile/profile-buttons/pr
 import { useProfileButtons } from '@/components/screens/profile/profile-buttons/useProfileButtons'
 import clsx from 'clsx'
 import ButtonLoader from '@/components/ui/loaders/ButtonLoader'
+import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 const ProfileButtons: FC<IProfileButtons> = ({
 	recipientId,
@@ -14,6 +15,8 @@ const ProfileButtons: FC<IProfileButtons> = ({
 		recipientId,
 		currentUserId
 	)
+
+	const { navigate } = useTypedNavigation()
 
 	const statusPending = data?.data().status === 'pending'
 	const statusSuccess = data?.data().status === 'accepted'
@@ -46,6 +49,11 @@ const ProfileButtons: FC<IProfileButtons> = ({
 			)}
 			<Button
 				className='bg-gray-600'
+				onPress={() =>
+					navigate('Chat', {
+						userId: recipientId
+					})
+				}
 				style={{
 					shadowColor: '#2a2b31',
 					shadowOffset: {

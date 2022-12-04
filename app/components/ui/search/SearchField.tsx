@@ -2,7 +2,11 @@ import { FC } from 'react'
 import { TextInput, View } from 'react-native'
 import { ISearchField } from '@/components/ui/search/search-field.interface'
 
-const SearchField: FC<ISearchField> = ({ searchTerm, onChange }) => {
+const SearchField: FC<ISearchField> = ({
+	searchTerm,
+	onChange,
+	placeholder
+}) => {
 	return (
 		<View
 			className='bg-gray-500 w-[90%] py-3 px-4 my-2 rounded-xl self-center'
@@ -21,7 +25,7 @@ const SearchField: FC<ISearchField> = ({ searchTerm, onChange }) => {
 			<TextInput
 				className='text-white text-base h-10'
 				placeholderTextColor={'gray'}
-				placeholder={'Search for people'}
+				placeholder={placeholder}
 				onChangeText={onChange}
 				value={searchTerm}
 			/>

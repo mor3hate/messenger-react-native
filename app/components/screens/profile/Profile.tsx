@@ -32,7 +32,7 @@ const Profile: FC = () => {
 	const onRefresh = useCallback(() => {
 		setRefreshing(true)
 		refetchInfo().then(() => refetchPosts().then(() => setRefreshing(false)))
-	}, [])
+	}, [refreshing])
 
 	if (isLoading) return <Loader size='large' />
 

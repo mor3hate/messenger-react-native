@@ -12,5 +12,5 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 }
 
 export const usersCol = createCollection<IUserData>('users')
+export const chatCol = createCollection('chats')
 export const usersProfileCol = createCollection<IProfileMain>('profile')
-

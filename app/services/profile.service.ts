@@ -46,16 +46,25 @@ export const ProfileService = {
 	},
 
 	async CreatePost(postText: string, data: IImgData, id: string) {
-		const imagePath = await ImageUploadService.postImage(data)
-
-		return addDoc(
-			collection(usersProfileCol, id, 'posts') as CollectionReference<IPost>,
-			{
-				lastPublished: serverTimestamp(),
-				postText: postText,
-				postImage: imagePath
-			}
-		)
+		if (data.uri.length !== 0) {
+			const imagePath = await ImageUploadService.postImage(data)
+			return addDoc(
+				collection(usersProfileCol, id, 'posts') as CollectionReference<IPost>,
+				{
+					lastPublished: serverTimestamp(),
+					postText: postText,
+					postImage: imagePath
+				}
+			)
+		} else {
+			return addDoc(
+				collection(usersProfileCol, id, 'posts') as CollectionReference<IPost>,
+				{
+					lastPublished: serverTimestamp(),
+					postText: postText
+				}
+			)
+		}
 	},
 
 	async GetPosts(id: string) {
